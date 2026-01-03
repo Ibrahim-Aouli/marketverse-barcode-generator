@@ -1,13 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barcode Generator</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="app.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barcode Generator</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- App -->
+  <script src="app.js" defer></script>
 </head>
 <body>
-    
+
+  <!-- INTRO -->
+  <section class="intro">
+    <h1>Barcode Generator</h1>
+    <p>Generate printable barcode labels based on settings below</p>
+  </section>
+
+  <!-- PREVIEW -->
+  <section class="card render">
+    <canvas id="barcodeCanvas"></canvas>
+  </section>
+
+  <!-- CONTROLS -->
+  <div class="container">
+
+    <!-- LABEL CONTENT -->
+    <section class="card label-content">
+      <h2>Barcode Content</h2>
+
+      <label>Title</label>
+      <input type="text" id="titleInput" value="Sample Product">
+
+      <label>SKU</label>
+      <input type="text" id="skuInput" value="ABC123">
+
+      <label>Quantity</label>
+      <input type="number" id="quantityInput" value="24" min="1">
+    </section>
+
+    <!-- PAGE SETUP -->
+    <section class="card page-setup">
+      <h2>Page Setup</h2>
+
+      <label>Paper Size</label>
+      <select id="paperSize">
+        <option value="A4">A4</option>
+        <option value="A3">A3</option>
+      </select>
+
+      <label>Margin (mm)</label>
+      <input type="number" id="margin" value="3">
+
+      <label>Gap (mm)</label>
+      <input type="number" id="gap" value="3">
+    </section>
+
+    <!-- LABEL DIMENSIONS -->
+    <section class="card label-setup">
+      <h2>Label Size</h2>
+
+      <label>Width (mm)</label>
+      <input type="number" id="labelWidth" value="40">
+
+      <label>Height (mm)</label>
+      <input type="number" id="labelHeight" value="30">
+    </section>
+
+    <!-- ZONES -->
+    <section class="card zones">
+      <h2>Layout Zones</h2>
+
+      <label>Header Height (mm)</label>
+      <input type="number" id="headerHeight" value="5">
+
+      <label>Title Height (mm)</label>
+      <input type="number" id="titleHeight" value="6">
+
+      <label>Barcode Height (mm)</label>
+      <input type="number" id="barcodeHeight" value="12">
+
+      <label>SKU Height (mm)</label>
+      <input type="number" id="skuHeight" value="2">
+    </section>
+
+    <!-- TEMPLATE -->
+    <section class="card template">
+      <h2>Template</h2>
+
+      <label>Upload Background</label>
+      <input type="file" id="templateUpload" accept="image/*">
+    </section>
+
+    <!-- ACTIONS -->
+    <section class="card actions">
+      <h2>Actions</h2>
+
+      <button id="generateSheet">Generate Pages</button>
+      <button id="exportPNG">Export PNG</button>
+      <button id="exportPDF">Export PDF</button>
+    </section>
+
+  </div>
+
 </body>
 </html>

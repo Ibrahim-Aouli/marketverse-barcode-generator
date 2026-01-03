@@ -4,142 +4,238 @@
   --mv-dark:#002855;
   --mv-light:#F0F0F0;
   --mv-text:#101014;
+  --mv-muted:#6b7280;
+  --mv-border:#e5e7eb;
   --mv-space:24px;
 }
+
+/* ===============================
+   BASE
+   =============================== */
+
+*,
+*::before,
+*::after{
+  box-sizing:border-box;
+}
+
 body{
   font-family:'Segoe UI',sans-serif;
-  background:var(--mv-light);
+  background:linear-gradient(180deg,#f7f8fb 0%, var(--mv-light) 100%);
   color:var(--mv-text);
   margin:0;
   padding:var(--mv-space);
   display:flex;
   flex-direction:column;
   align-items:center;
+  gap:var(--mv-space);
 }
+
+/* ===============================
+   INTRO
+   =============================== */
+
+.intro{
+  text-align:center;
+  max-width:720px;
+}
+
 h1{
   font-family:'League Spartan',sans-serif;
   text-transform:uppercase;
+  letter-spacing:1px;
+  font-size:42px;
   color:var(--mv-dark);
-  margin-bottom:8px;
+  margin:0 0 6px;
 }
-p{color:#555;margin-top:0;margin-bottom:16px;}
-.container{
+
+.intro p{
+  color:var(--mv-muted);
+  margin:0;
+  font-size:16px;
+}
+
+/* ===============================
+   CANVAS PREVIEW
+   =============================== */
+
+.card.render{
+  width:100%;
+  max-width:960px;
+  padding:28px;
   display:flex;
-  flex-wrap:wrap;
-  gap:var(--mv-space);
   justify-content:center;
-  max-width:1500px;
+  align-items:center;
 }
-.card{
-  background:var(--mv-bg,#fff);
+
+#barcodeCanvas{
+  background:#fff;
   border-radius:16px;
-  box-shadow:0 3px 10px rgba(0,0,0,0.1);
-  padding:20px;
-  width:340px;
+  border:1px solid var(--mv-border);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.08),
+    inset 0 0 0 1px rgba(255,255,255,0.6);
+  max-width:100%;
+}
+
+/* ===============================
+   CARD GRID
+   =============================== */
+
+.container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:var(--mv-space);
+  width:100%;
+  max-width:1400px;
+}
+
+/* ===============================
+   CARDS
+   =============================== */
+
+.card{
+  background:#fff;
+  border-radius:18px;
+  box-shadow:
+    0 4px 12px rgba(0,0,0,0.08),
+    inset 0 0 0 1px var(--mv-border);
+  padding:22px;
   display:flex;
   flex-direction:column;
-  gap:8px;
+  gap:10px;
+  transition:transform .15s ease, box-shadow .15s ease;
 }
+
+.card:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 10px 24px rgba(0,0,0,0.12),
+    inset 0 0 0 1px var(--mv-border);
+}
+
 .card h2{
   font-family:'League Spartan',sans-serif;
   text-transform:uppercase;
-  font-size:16px;
+  font-size:15px;
+  letter-spacing:.6px;
   color:var(--mv-dark);
+  margin:0 0 6px;
+  padding-bottom:6px;
   border-bottom:2px solid var(--mv-blue);
-  margin:0 0 8px;
-  padding-bottom:4px;
 }
+
+/* ===============================
+   FORM CONTROLS
+   =============================== */
+
 label{
   font-weight:600;
+  font-size:13px;
   color:var(--mv-dark);
-  margin-top:6px;
-  display:block;
+  margin-top:8px;
 }
-input,select,textarea{
+
+input,
+select,
+textarea{
   width:100%;
-  border:1px solid #ccc;
-  border-radius:8px;
-  padding:8px;
-  margin-top:4px;
+  border:1px solid var(--mv-border);
+  border-radius:10px;
+  padding:10px 12px;
   font-size:14px;
+  transition:border .15s ease, box-shadow .15s ease;
+  background:#fff;
 }
-textarea{resize:vertical;font-family:monospace;}
+
+input:focus,
+select:focus,
+textarea:focus{
+  outline:none;
+  border-color:var(--mv-blue);
+  box-shadow:0 0 0 3px rgba(42,117,255,0.15);
+}
+
+textarea{
+  resize:vertical;
+  font-family:monospace;
+}
+
+/* ===============================
+   BUTTONS
+   =============================== */
+
 button{
-  background:var(--mv-blue);
+  background:linear-gradient(135deg,var(--mv-blue),#1e5ce0);
   color:#fff;
   border:none;
-  padding:10px 16px;
-  border-radius:8px;
+  padding:12px 18px;
+  border-radius:12px;
   font-weight:600;
   cursor:pointer;
-  margin-top:6px;
-}
-button:hover{background:#1e5ce0;}
-#previewCard{
-  width:100%;
-  max-width:900px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  position:relative;
-  margin-bottom:var(--mv-space);
-}
-#barcodeCanvas{
-  background:#fff;
-  border:1px solid #ccc;
-  border-radius:12px;
-  max-width:100%;
-  margin-top:12px;
-}
-#progressWrap{
-  width:100%;
-  background:#fff;
-  border-radius:12px;
-  box-shadow:0 2px 6px rgba(0,0,0,0.15);
-  padding:10px 14px;
-  position:sticky;
-  top:0;
-  z-index:5;
-}
-#progressHeader{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:6px;
-  margin-bottom:6px;
-}
-#progressBar{
-  width:100%;
-  height:10px;
-  background:#ddd;
-  border-radius:5px;
-  overflow:hidden;
-}
-#progressFill{
-  height:10px;
-  background:var(--mv-blue);
-  width:0%;
-  transition:width .25s linear;
-}
-#progressStatus{
   font-size:14px;
-  color:var(--mv-text);
+  transition:transform .1s ease, box-shadow .1s ease, opacity .1s ease;
 }
+
+button:hover{
+  transform:translateY(-1px);
+  box-shadow:0 6px 16px rgba(42,117,255,0.35);
+}
+
+button:active{
+  transform:translateY(0);
+  opacity:.9;
+}
+
+/* ===============================
+   UTILITIES
+   =============================== */
+
+.flex-row{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.flex-row input{
+  width:72px;
+}
+
 .toggle{
   display:flex;
   align-items:center;
-  gap:8px;
-  margin-top:6px;
-}
-.legend{
+  gap:10px;
   margin-top:10px;
   font-size:14px;
+}
+
+.legend{
+  margin-top:12px;
+  font-size:13px;
+  color:var(--mv-muted);
   display:grid;
   grid-template-columns:auto 1fr;
   gap:6px 10px;
   align-items:center;
 }
-.swatch{width:20px;height:20px;border-radius:4px;}
-.flex-row{display:flex;gap:6px;}
-.flex-row input{width:60px;}
+
+.swatch{
+  width:18px;
+  height:18px;
+  border-radius:6px;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,0.15);
+}
+
+/* ===============================
+   RESPONSIVE
+   =============================== */
+
+@media (max-width:600px){
+  h1{
+    font-size:32px;
+  }
+
+  .card.render{
+    padding:18px;
+  }
+}
