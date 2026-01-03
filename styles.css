@@ -1,0 +1,145 @@
+:root{
+  --mv-blue:#2A75FF;
+  --mv-green:#33CC66;
+  --mv-dark:#002855;
+  --mv-light:#F0F0F0;
+  --mv-text:#101014;
+  --mv-space:24px;
+}
+body{
+  font-family:'Segoe UI',sans-serif;
+  background:var(--mv-light);
+  color:var(--mv-text);
+  margin:0;
+  padding:var(--mv-space);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+h1{
+  font-family:'League Spartan',sans-serif;
+  text-transform:uppercase;
+  color:var(--mv-dark);
+  margin-bottom:8px;
+}
+p{color:#555;margin-top:0;margin-bottom:16px;}
+.container{
+  display:flex;
+  flex-wrap:wrap;
+  gap:var(--mv-space);
+  justify-content:center;
+  max-width:1500px;
+}
+.card{
+  background:var(--mv-bg,#fff);
+  border-radius:16px;
+  box-shadow:0 3px 10px rgba(0,0,0,0.1);
+  padding:20px;
+  width:340px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.card h2{
+  font-family:'League Spartan',sans-serif;
+  text-transform:uppercase;
+  font-size:16px;
+  color:var(--mv-dark);
+  border-bottom:2px solid var(--mv-blue);
+  margin:0 0 8px;
+  padding-bottom:4px;
+}
+label{
+  font-weight:600;
+  color:var(--mv-dark);
+  margin-top:6px;
+  display:block;
+}
+input,select,textarea{
+  width:100%;
+  border:1px solid #ccc;
+  border-radius:8px;
+  padding:8px;
+  margin-top:4px;
+  font-size:14px;
+}
+textarea{resize:vertical;font-family:monospace;}
+button{
+  background:var(--mv-blue);
+  color:#fff;
+  border:none;
+  padding:10px 16px;
+  border-radius:8px;
+  font-weight:600;
+  cursor:pointer;
+  margin-top:6px;
+}
+button:hover{background:#1e5ce0;}
+#previewCard{
+  width:100%;
+  max-width:900px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  position:relative;
+  margin-bottom:var(--mv-space);
+}
+#barcodeCanvas{
+  background:#fff;
+  border:1px solid #ccc;
+  border-radius:12px;
+  max-width:100%;
+  margin-top:12px;
+}
+#progressWrap{
+  width:100%;
+  background:#fff;
+  border-radius:12px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.15);
+  padding:10px 14px;
+  position:sticky;
+  top:0;
+  z-index:5;
+}
+#progressHeader{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-bottom:6px;
+}
+#progressBar{
+  width:100%;
+  height:10px;
+  background:#ddd;
+  border-radius:5px;
+  overflow:hidden;
+}
+#progressFill{
+  height:10px;
+  background:var(--mv-blue);
+  width:0%;
+  transition:width .25s linear;
+}
+#progressStatus{
+  font-size:14px;
+  color:var(--mv-text);
+}
+.toggle{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:6px;
+}
+.legend{
+  margin-top:10px;
+  font-size:14px;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:6px 10px;
+  align-items:center;
+}
+.swatch{width:20px;height:20px;border-radius:4px;}
+.flex-row{display:flex;gap:6px;}
+.flex-row input{width:60px;}
